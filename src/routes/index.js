@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 router.post('/loginStudent', loginStudent)
-router.get('/getStudentData', checkAuth, getStudentData)
+router.post('/getStudentData', checkAuth, getStudentData)
 
 
 
