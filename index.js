@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import favicon from 'serve-favicon';
 import serverConfig from "./src/configs/serverconfig.config.js";
 import { DB_RETRY_LIMIT, DB_RETRY_TIMEOUT } from "./src/constant/constant.js";
 import router from "./src/routes/index.js";
@@ -27,6 +28,7 @@ const connectionDB = async () => {
 }
 const PORT = process.env.PORT || 5000;
 const app = express();
+const faviconPath = path.join(__dirname, 'public', 'favicon.ico');
 
 
 connectionDB()
@@ -36,9 +38,12 @@ connectionDB()
 
 app.use(express.json())
 app.use(cors())
+app.use(favicon(faviconPath));
 
 app.use("/", router)
 
 app.listen(PORT, () => {
     console.log(`server sre runing on port http://localhost:${PORT}`)
 })
+
+export default app
