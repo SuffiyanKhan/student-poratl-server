@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import favicon from 'serve-favicon';
+import path from "path";
+import { fileURLToPath } from 'url';
 import serverConfig from "./src/configs/serverconfig.config.js";
 import { DB_RETRY_LIMIT, DB_RETRY_TIMEOUT } from "./src/constant/constant.js";
 import router from "./src/routes/index.js";
@@ -26,6 +28,9 @@ const connectionDB = async () => {
         }
     }
 }
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const PORT = process.env.PORT || 5000;
 const app = express();
 const faviconPath = path.join(__dirname, 'public', 'favicon.ico');
