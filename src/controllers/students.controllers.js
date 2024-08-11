@@ -1,12 +1,11 @@
 import jwt from "jsonwebtoken";
-import { findByCNIC } from "../servicess/students.services.js";
+import { findByCNIC, getStudent } from "../servicess/students.services.js";
 import serverConfig from "../configs/serverconfig.config.js";
 
 const loginStudent = async (req, res) => {
     try {
         const { roll, password } = req.body;
 
-        // Assume findByCNIC is an async function
         const findByCnic = await findByCNIC(roll);
 
         if (!findByCnic) {
@@ -19,6 +18,18 @@ const loginStudent = async (req, res) => {
     }
 }
 
+const getStudentData = async (req, res) => {
+    try {
+        const { id } = req.body;
+        const response = await getStudent(id);
+        console.log(response)
+        return res.status(200).json({ status: 200, message: "success", data: response });
+    } catch (error) {
+        return res.status(500).json({ status: 500, message: "internal error", errormessage: error.message });
+    }
+}
+
 export {
-    loginStudent
+    loginStudent,
+    getStudentData
 }

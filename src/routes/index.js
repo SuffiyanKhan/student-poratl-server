@@ -1,12 +1,14 @@
 import express from "express";
-import { loginStudent } from "../controllers/students.controllers.js";
+import { loginStudent, getStudentData } from "../controllers/students.controllers.js";
+import checkAuth from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
 
 
 
-router.post('/loginStudent',loginStudent)
+router.post('/loginStudent', loginStudent)
+router.get('/getStudentData', checkAuth, getStudentData)
 
 
 
