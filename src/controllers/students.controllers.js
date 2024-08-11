@@ -21,7 +21,7 @@ const loginStudent = async (req, res) => {
 const getStudentData = async (req, res) => {
     try {
         const { userId } = req.body;
-        const response = await getStudent(id);
+        const response = await getStudent(userId);
         console.log(response)
         return res.status(200).json({ status: 200, message: "success", data: response });
     } catch (error) {
