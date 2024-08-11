@@ -4,6 +4,7 @@ import cors from "cors";
 import favicon from 'serve-favicon';
 import path from "path";
 import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import serverConfig from "./src/configs/serverconfig.config.js";
 import { DB_RETRY_LIMIT, DB_RETRY_TIMEOUT } from "./src/constant/constant.js";
 import router from "./src/routes/index.js";
